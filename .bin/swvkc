@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export XKB_DEFAULT_LAYOUT='us(altgr-intl),it,gr'
+export XKB_DEFAULT_OPTIONS='grp:alt_shift_toggle,caps:none'
+export GTK_IM_MODULE='uim'
+#export QT_IM_MODULE='uim' qt apps segfault
+
+exec $HOME/git/swvkc/build/swvkc kitty &> /dev/null

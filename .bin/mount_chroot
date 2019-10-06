@@ -1,0 +1,6 @@
+mount --bind /home/stefano/void-glibc /home/stefano/void-glibc # some programs work incorrectly without this
+cp -L /etc/resolv.conf /home/stefano/void-glibc/etc/resolv.conf # for network
+mount --rbind /proc /home/stefano/void-glibc/proc
+mount --rbind /sys /home/stefano/void-glibc/sys
+mount --rbind /dev /home/stefano/void-glibc/dev
+mount --rbind /run /home/stefano/void-glibc/run
