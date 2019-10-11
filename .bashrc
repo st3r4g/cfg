@@ -5,6 +5,9 @@
 
 PS1='[\u@\h \W]\$ '
 
+. `which env_parallel.bash`
+bind 'set mark-symlinked-directories on'
+
 launch() { "$@" &> /dev/null & }
 
 alias clip1='head -1 | kitty +kitten clipboard'

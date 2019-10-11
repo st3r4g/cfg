@@ -1,21 +1,27 @@
 # .bash_profile
 
-PATH=~/.bin:$PATH
-export ALSA_CARD=PCH
-export LADSPA_PATH=/usr/lib/ladspa
-export BASH_COMPLETION_USER_DIR=$HOME/.config/bash-completion
+PATH=~/.bin:~/.local/bin:$PATH
+export EDITOR=nvim
 
-#if [ "$(tty)" = "/dev/tty1" ]; then
-#	LC_ALL=C mega-cmd-server &
-#fi
+# Wayland stuff
+if test -z "${XDG_RUNTIME_DIR}"; then
+     export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
+     if ! test -d "${XDG_RUNTIME_DIR}"; then
+         mkdir "${XDG_RUNTIME_DIR}"
+         chmod 0700 "${XDG_RUNTIME_DIR}"
+     fi
+fi
+
+# autologin on tty1
+if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ]; then
+	# Menu Key is Compose Key
+	export XKB_DEFAULT_OPTIONS=compose:menu
+	# Start Japanese IM
+	GTK_IM_MODULE=uim ; export GTK_IM_MODULE
+	QT_IM_MODULE=uim ; export QT_IM_MODULE
+
+#	exec sway
+fi
 
 # Get the aliases and functions
 [ -f $HOME/.bashrc ] && . $HOME/.bashrc
-
-# graphical session on tty1
-#if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ]; then
-#	GTK_IM_MODULE=uim ; export GTK_IM_MODULE
-#	QT_IM_MODULE=uim ; export QT_IM_MODULE
-#	SVDIR=$HOME/service; export SVDIR
-#	exec runsvdir $SVDIR
-#fi
