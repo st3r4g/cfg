@@ -22,6 +22,8 @@ set textwidth=80
 set incsearch
 set showmatch
 set hlsearch
+" Search as you type on substitute in neovim
+set inccommand=nosplit
 
 " Don't litter swp files everywhere
 set backupdir=~/.cache
